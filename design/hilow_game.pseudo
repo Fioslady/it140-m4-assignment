@@ -1,29 +1,59 @@
 # IT 140 Module Four Assignment
-# Higher/Lower Game Pseudocode Template
-#
-# Complete the TODO prompts below with your own pseudocode.
-# Keep this file in .pseudo format for submission.
-#
-# Use clear indentation to show decisions and repeated behavior.
-# Your finished pseudocode should address every requirement in the
-# current Module Four Assignment Guidelines and Rubric.
+START
 
-START hilow_game
+OUTPUT "Enter the lower bound:"
+INPUT lower_bound
 
-    # Establish a valid guessing range.
-    TODO: Obtain the lower and upper bounds.
-    TODO: Repeat as needed until the bounds satisfy the requirement.
+OUTPUT "Enter the upper bound:"
+INPUT upper_bound
 
-    # Establish the number the player is trying to guess.
-    TODO: Generate the required random number from the valid range.
+WHILE lower_bound >= upper_bound
+    OUTPUT "Invalid bounds. The lower bound must be less than the upper bound."
 
-    # Play the game.
-    TODO: Obtain and validate a guess using the selected bounds.
-    TODO: Repeat the required game behavior until the correct guess.
-        TODO: Compare a valid guess and provide the required feedback.
-        TODO: Obtain and validate another guess when play continues.
+    OUTPUT "Enter the lower bound:"
+    INPUT lower_bound
 
-END hilow_game
+    OUTPUT "Enter the upper bound:"
+    INPUT upper_bound
+END WHILE
+
+LET secret_number = RANDOM NUMBER BETWEEN lower_bound AND upper_bound
+
+OUTPUT "Enter a guess between " + lower_bound + " and " + upper_bound + ":"
+INPUT user_guess
+
+WHILE user_guess < lower_bound OR user_guess > upper_bound
+    OUTPUT "Invalid guess. Please enter a number within the range."
+
+    OUTPUT "Enter a guess between " + lower_bound + " and " + upper_bound + ":"
+    INPUT user_guess
+END WHILE
+
+WHILE user_guess != secret_number
+
+    IF user_guess < secret_number THEN
+        OUTPUT "Too low."
+    ELSE
+        OUTPUT "Too high."
+    END IF
+
+    OUTPUT "Enter a guess between " + lower_bound + " and " + upper_bound + ":"
+    INPUT user_guess
+
+    WHILE user_guess < lower_bound OR user_guess > upper_bound
+        OUTPUT "Invalid guess. Please enter a number within the range."
+
+        OUTPUT "Enter a guess between " + lower_bound + " and " + upper_bound + ":"
+        INPUT user_guess
+    END WHILE
+
+END WHILE
+
+OUTPUT "Correct! You guessed the number."
+
+END
 
 # === References ===
-# TODO: Add references for sources you used, or delete this line if unused.
+# Gaddis, T. (2021). Starting out with Python (5th ed.). Pearson.
+# Python Software Foundation. (2026). The Python tutorial: Control flow tools. [docs.python.org](https://docs.python.org/3/tutorial/controlflow.html)
+# zyBooks. (2026). IT 140: Introduction to scripting. zyBooks.
